@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -6,12 +6,27 @@ import {
   Image,
   Pressable,
 } from 'react-native';
+import SoundPlayer from 'react-native-sound-player';
 
 type InitialScreenProps = {
   navigation: any;
 };
 
 export default function InitialScreen({navigation}: InitialScreenProps) {
+  const [isPlayingSound, setIsPlayingSound] = useState(false);
+
+  const playSound = () => {
+    try {
+      setIsPlayingSound(!isPlayingSound);
+
+      !isPlayingSound === true
+        ? SoundPlayer.playSoundFile('song', 'mp3')
+        : SoundPlayer.stop();
+    } catch (e) {
+      console.log('cannot play the sound file', e);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -22,19 +37,19 @@ export default function InitialScreen({navigation}: InitialScreenProps) {
           <Image style={styles.logo} source={require('../assets/logo.png')} />
         </View>
         <View style={styles.iconsContainer}>
-          <Pressable onPress={() => {}}>
-            {/* {isPlayingSound && (
+          <Pressable onPress={playSound}>
+            {isPlayingSound && (
               <Image
                 style={styles.icon}
                 source={require('../assets/sound.png')}
               />
-            )} */}
-            {/* {!isPlayingSound && ( */}
-            <Image
-              style={styles.icon}
-              source={require('../assets/sound-mute.png')}
-            />
-            {/* )} */}
+            )}
+            {!isPlayingSound && (
+              <Image
+                style={styles.icon}
+                source={require('../assets/sound-mute.png')}
+              />
+            )}
           </Pressable>
           <Pressable
             onPress={() => {
