@@ -37,7 +37,6 @@ export default function HomeScreen({navigation}: Props) {
       .then((response: any) => {
         setData(response[0]);
         setIsLoading(false);
-        navigation.navigate('Error');
       })
       .catch(() => {
         navigation.navigate('Error');
@@ -109,8 +108,8 @@ export default function HomeScreen({navigation}: Props) {
         <Shadow
           containerStyle={styles.shadow}
           startColor="#072A4233"
-          endColor="transparent"
-          offset={[-2, 5]}
+          endColor="#072A4233"
+          offset={[-2, 4]}
           distance={1}>
           <View style={styles.buttonContainer}>
             <Pressable style={styles.button} onPress={getQuotes}>
@@ -126,7 +125,7 @@ export default function HomeScreen({navigation}: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    gap: 10,
+    gap: 12,
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#01AED9',

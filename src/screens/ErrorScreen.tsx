@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     fontSize: 130,
     color: '#000000',
     textAlign: 'center',
-    marginTop: 90,
+    marginTop: 60,
     fontFamily: 'LondrinaShadow-Regular',
   },
   textContainer: {
